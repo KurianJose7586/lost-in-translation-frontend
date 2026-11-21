@@ -26,7 +26,12 @@
      "cer": 0.0776,
      "clips": 96,
      "speakers": 24,
-     "wer_pooled": 0.2179
+     "wer_pooled": 0.2179,
+     "wer_lenient": 0.1207,
+     "ci_lenient": [
+      0.085,
+      0.1564
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.2351,
@@ -37,7 +42,12 @@
      "cer": 0.1058,
      "clips": 110,
      "speakers": 22,
-     "wer_pooled": 0.2681
+     "wer_pooled": 0.2681,
+     "wer_lenient": 0.1646,
+     "ci_lenient": [
+      0.1273,
+      0.2019
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.2394,
@@ -48,7 +58,12 @@
      "cer": 0.1077,
      "clips": 114,
      "speakers": 38,
-     "wer_pooled": 0.2715
+     "wer_pooled": 0.2715,
+     "wer_lenient": 0.1676,
+     "ci_lenient": [
+      0.1392,
+      0.196
+     ]
     }
    },
    "examples": [
@@ -363,7 +378,12 @@
      "cer": 0.1894,
      "clips": 78,
      "speakers": 26,
-     "wer_pooled": 0.4168
+     "wer_pooled": 0.4168,
+     "wer_lenient": 0.2947,
+     "ci_lenient": [
+      0.2603,
+      0.329
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.3686,
@@ -374,7 +394,12 @@
      "cer": 0.1659,
      "clips": 99,
      "speakers": 33,
-     "wer_pooled": 0.3749
+     "wer_pooled": 0.3749,
+     "wer_lenient": 0.258,
+     "ci_lenient": [
+      0.2276,
+      0.2885
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.4441,
@@ -385,7 +410,12 @@
      "cer": 0.1998,
      "clips": 148,
      "speakers": 37,
-     "wer_pooled": 0.4353
+     "wer_pooled": 0.4353,
+     "wer_lenient": 0.3109,
+     "ci_lenient": [
+      0.2821,
+      0.3396
+     ]
     }
    },
    "examples": [
@@ -700,7 +730,12 @@
      "cer": 0.1782,
      "clips": 114,
      "speakers": 38,
-     "wer_pooled": 0.3967
+     "wer_pooled": 0.3967,
+     "wer_lenient": 0.2771,
+     "ci_lenient": [
+      0.2488,
+      0.3055
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.5147,
@@ -711,7 +746,12 @@
      "cer": 0.2316,
      "clips": 200,
      "speakers": 40,
-     "wer_pooled": 0.4918
+     "wer_pooled": 0.4918,
+     "wer_lenient": 0.3603,
+     "ci_lenient": [
+      0.3326,
+      0.388
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.5383,
@@ -722,7 +762,12 @@
      "cer": 0.2422,
      "clips": 105,
      "speakers": 21,
-     "wer_pooled": 0.5106
+     "wer_pooled": 0.5106,
+     "wer_lenient": 0.3768,
+     "ci_lenient": [
+      0.3386,
+      0.415
+     ]
     }
    },
    "examples": [
@@ -1037,7 +1082,12 @@
      "cer": 0.1883,
      "clips": 63,
      "speakers": 21,
-     "wer_pooled": 0.4148
+     "wer_pooled": 0.4148,
+     "wer_lenient": 0.293,
+     "ci_lenient": [
+      0.2548,
+      0.3312
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.3947,
@@ -1048,7 +1098,12 @@
      "cer": 0.1776,
      "clips": 96,
      "speakers": 24,
-     "wer_pooled": 0.3957
+     "wer_pooled": 0.3957,
+     "wer_lenient": 0.2763,
+     "ci_lenient": [
+      0.2405,
+      0.312
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.4919,
@@ -1059,7 +1114,12 @@
      "cer": 0.2214,
      "clips": 111,
      "speakers": 37,
-     "wer_pooled": 0.4735
+     "wer_pooled": 0.4735,
+     "wer_lenient": 0.3443,
+     "ci_lenient": [
+      0.3156,
+      0.3731
+     ]
     }
    },
    "examples": [
@@ -1374,7 +1434,12 @@
      "cer": 0.2237,
      "clips": 185,
      "speakers": 37,
-     "wer_pooled": 0.4777
+     "wer_pooled": 0.4777,
+     "wer_lenient": 0.348,
+     "ci_lenient": [
+      0.3192,
+      0.3767
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.4881,
@@ -1385,7 +1450,12 @@
      "cer": 0.2196,
      "clips": 190,
      "speakers": 38,
-     "wer_pooled": 0.4705
+     "wer_pooled": 0.4705,
+     "wer_lenient": 0.3417,
+     "ci_lenient": [
+      0.3132,
+      0.37
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.5939,
@@ -1396,7 +1466,12 @@
      "cer": 0.2673,
      "clips": 93,
      "speakers": 31,
-     "wer_pooled": 0.5551
+     "wer_pooled": 0.5551,
+     "wer_lenient": 0.4157,
+     "ci_lenient": [
+      0.3843,
+      0.4472
+     ]
     }
    },
    "examples": [
@@ -1711,7 +1786,12 @@
      "cer": 0.1101,
      "clips": 110,
      "speakers": 22,
-     "wer_pooled": 0.2758
+     "wer_pooled": 0.2758,
+     "wer_lenient": 0.1714,
+     "ci_lenient": [
+      0.1341,
+      0.2087
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.226,
@@ -1722,7 +1802,12 @@
      "cer": 0.1017,
      "clips": 104,
      "speakers": 26,
-     "wer_pooled": 0.2608
+     "wer_pooled": 0.2608,
+     "wer_lenient": 0.1582,
+     "ci_lenient": [
+      0.1238,
+      0.1925
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.348,
@@ -1733,7 +1818,12 @@
      "cer": 0.1566,
      "clips": 132,
      "speakers": 33,
-     "wer_pooled": 0.3584
+     "wer_pooled": 0.3584,
+     "wer_lenient": 0.2436,
+     "ci_lenient": [
+      0.2131,
+      0.2741
+     ]
     }
    },
    "examples": [
@@ -2048,7 +2138,12 @@
      "cer": 0.048,
      "clips": 136,
      "speakers": 34,
-     "wer_pooled": 0.1652
+     "wer_pooled": 0.1652,
+     "wer_lenient": 0.0746,
+     "ci_lenient": [
+      0.0446,
+      0.1046
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.12,
@@ -2059,7 +2154,12 @@
      "cer": 0.054,
      "clips": 135,
      "speakers": 45,
-     "wer_pooled": 0.176
+     "wer_pooled": 0.176,
+     "wer_lenient": 0.084,
+     "ci_lenient": [
+      0.0579,
+      0.11
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.2199,
@@ -2070,7 +2170,12 @@
      "cer": 0.099,
      "clips": 81,
      "speakers": 27,
-     "wer_pooled": 0.2559
+     "wer_pooled": 0.2559,
+     "wer_lenient": 0.1539,
+     "ci_lenient": [
+      0.1203,
+      0.1876
+     ]
     }
    },
    "examples": [
@@ -2385,7 +2490,12 @@
      "cer": 0.1473,
      "clips": 144,
      "speakers": 36,
-     "wer_pooled": 0.342
+     "wer_pooled": 0.342,
+     "wer_lenient": 0.2292,
+     "ci_lenient": [
+      0.2001,
+      0.2584
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.3875,
@@ -2396,7 +2506,12 @@
      "cer": 0.1744,
      "clips": 172,
      "speakers": 43,
-     "wer_pooled": 0.39
+     "wer_pooled": 0.39,
+     "wer_lenient": 0.2712,
+     "ci_lenient": [
+      0.2446,
+      0.2979
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.3888,
@@ -2407,7 +2522,12 @@
      "cer": 0.175,
      "clips": 66,
      "speakers": 22,
-     "wer_pooled": 0.391
+     "wer_pooled": 0.391,
+     "wer_lenient": 0.2722,
+     "ci_lenient": [
+      0.2349,
+      0.3095
+     ]
     }
    },
    "examples": [
@@ -2722,7 +2842,12 @@
      "cer": 0.1625,
      "clips": 100,
      "speakers": 25,
-     "wer_pooled": 0.369
+     "wer_pooled": 0.369,
+     "wer_lenient": 0.2528,
+     "ci_lenient": [
+      0.2178,
+      0.2878
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.3552,
@@ -2733,7 +2858,12 @@
      "cer": 0.1598,
      "clips": 140,
      "speakers": 35,
-     "wer_pooled": 0.3642
+     "wer_pooled": 0.3642,
+     "wer_lenient": 0.2486,
+     "ci_lenient": [
+      0.219,
+      0.2782
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.4039,
@@ -2744,7 +2874,12 @@
      "cer": 0.1818,
      "clips": 123,
      "speakers": 41,
-     "wer_pooled": 0.4031
+     "wer_pooled": 0.4031,
+     "wer_lenient": 0.2827,
+     "ci_lenient": [
+      0.2554,
+      0.3101
+     ]
     }
    },
    "examples": [
@@ -3059,7 +3194,12 @@
      "cer": 0.1919,
      "clips": 152,
      "speakers": 38,
-     "wer_pooled": 0.4212
+     "wer_pooled": 0.4212,
+     "wer_lenient": 0.2985,
+     "ci_lenient": [
+      0.2701,
+      0.3269
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.414,
@@ -3070,7 +3210,12 @@
      "cer": 0.1863,
      "clips": 155,
      "speakers": 31,
-     "wer_pooled": 0.4112
+     "wer_pooled": 0.4112,
+     "wer_lenient": 0.2898,
+     "ci_lenient": [
+      0.2584,
+      0.3212
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.4897,
@@ -3081,7 +3226,12 @@
      "cer": 0.2204,
      "clips": 180,
      "speakers": 45,
-     "wer_pooled": 0.4717
+     "wer_pooled": 0.4717,
+     "wer_lenient": 0.3428,
+     "ci_lenient": [
+      0.3167,
+      0.3688
+     ]
     }
    },
    "examples": [
@@ -3396,7 +3546,12 @@
      "cer": 0.2281,
      "clips": 88,
      "speakers": 22,
-     "wer_pooled": 0.4855
+     "wer_pooled": 0.4855,
+     "wer_lenient": 0.3548,
+     "ci_lenient": [
+      0.3175,
+      0.3921
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.5774,
@@ -3407,7 +3562,12 @@
      "cer": 0.2598,
      "clips": 123,
      "speakers": 41,
-     "wer_pooled": 0.5419
+     "wer_pooled": 0.5419,
+     "wer_lenient": 0.4042,
+     "ci_lenient": [
+      0.3769,
+      0.4315
+     ]
     },
     "whisper-large-v3": {
      "wer": 0.5961,
@@ -3418,7 +3578,12 @@
      "cer": 0.2682,
      "clips": 168,
      "speakers": 42,
-     "wer_pooled": 0.5569
+     "wer_pooled": 0.5569,
+     "wer_lenient": 0.4173,
+     "ci_lenient": [
+      0.3902,
+      0.4442
+     ]
     }
    },
    "examples": [
@@ -3732,7 +3897,12 @@
      "cer": 0.2901,
      "clips": 164,
      "speakers": 41,
-     "wer_pooled": 0.5958
+     "wer_pooled": 0.5958,
+     "wer_lenient": 0.4513,
+     "ci_lenient": [
+      0.424,
+      0.4787
+     ]
     },
     "omniASR_LLM_7B_v2": {
      "wer": 0.6385,
@@ -3743,7 +3913,12 @@
      "cer": 0.2873,
      "clips": 160,
      "speakers": 32,
-     "wer_pooled": 0.5908
+     "wer_pooled": 0.5908,
+     "wer_lenient": 0.4469,
+     "ci_lenient": [
+      0.416,
+      0.4779
+     ]
     },
     "whisper-large-v3": {
      "status": "unsupported"

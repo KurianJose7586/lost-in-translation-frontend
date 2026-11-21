@@ -41,6 +41,7 @@
   <h2>Scoring</h2>
   <p>A district's word error rate (WER) is all word errors (substitutions, deletions and insertions) divided by all reference words in that district. The 95% interval comes from a bootstrap that resamples speakers 1,000 times, because clips from one speaker aren't independent.</p>
   <p>Map colours use a shrunk WER: each district is pulled toward its language's average, more strongly when its interval is wide, so a district with few clips can't swing the map. Tables show the raw WER.</p>
+  <p><strong>Lenient WER</strong> scores the same clips again, but forgives differences that are spelling rather than hearing: the nasal mark (है and हैं, में and मे) and a short list of variants of the same word, such as बहोत and बहुत, or the homophones कि and की. In our first ten districts, about a third of the strongest model's errors were of this kind. If a district is bad on both measures, the model really is mishearing its speakers. Lenient WER also stops a model trained on Vaani from looking better just because it learned Vaani's spellings.</p>
 
   <h2>Models and languages</h2>
   <p>Each model is told the clip's language. Where a model doesn't know a variety (Bhojpuri, for example), it is told the closest language it does know, usually Hindi, because that is what a real user would choose. Where a model supports no close language, the district is shown as <strong>not supported</strong>, never as a 100% error rate.</p>

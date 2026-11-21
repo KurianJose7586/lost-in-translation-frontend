@@ -14,6 +14,7 @@ const HATCH = `<defs><pattern id="hatch" width="4" height="4" patternUnits="user
 
 const pct = (x) => `${Math.round(x * 100)}%`;
 const interval = (r) => `${pct(r.ci[0])}–${pct(r.ci[1])}`;
+const loose = (r) => (r.wer_lenient == null ? "–" : pct(r.wer_lenient));
 const bin = (r) => Math.min(6, Math.floor(r.wer_pooled * 10));
 
 // Data strings always become text nodes, never HTML.
@@ -68,8 +69,8 @@ function mapView() {
       const r = d.results[model];
       const name = h("td", {}, h("a", { href: `#/district/${d.id}` }, d.name));
       return r.status
-        ? h("tr", {}, name, td(d.state), h("td", { class: "na", colspan: 4 }, "Not supported"))
-        : h("tr", {}, name, td(d.state), td(pct(r.wer), "num"), td(interval(r), "num"), td(r.clips, "num"), td(r.speakers, "num"));
+        ? h("tr", {}, name, td(d.state), h("td", { class: "na", colspan: 5 }, "Not supported"))
+        : h("tr", {}, name, td(d.state), td(pct(r.wer), "num"), td(interval(r), "num"), td(loose(r), "num"), td(r.clips, "num"), td(r.speakers, "num"));
     }));
   }
 
@@ -115,7 +116,7 @@ function mapView() {
     wrap,
     legend,
     h("div", { class: "table-wrap" }, h("table", {},
-      h("thead", {}, h("tr", {}, ["District", "State", "WER", "95% interval", "Clips", "Speakers"].map((c) => h("th", { scope: "col" }, c)))),
+      h("thead", {}, h("tr", {}, ["District", "State", "WER", "95% interval", "Lenient WER", "Clips", "Speakers"].map((c) => h("th", { scope: "col" }, c)))),
       tbody)),
   );
 }
@@ -125,8 +126,8 @@ function districtView(d) {
   const rows = data.models.filter((m) => d.results[m]).map((m) => {
     const r = d.results[m];
     return r.status
-      ? h("tr", {}, td(m), h("td", { class: "na", colspan: 5 }, "Not supported"))
-      : h("tr", {}, td(m), td(pct(r.wer), "num"), td(interval(r), "num"), td(pct(r.cer), "num"), td(r.clips, "num"), td(r.speakers, "num"));
+      ? h("tr", {}, td(m), h("td", { class: "na", colspan: 6 }, "Not supported"))
+      : h("tr", {}, td(m), td(pct(r.wer), "num"), td(interval(r), "num"), td(loose(r), "num"), td(pct(r.cer), "num"), td(r.clips, "num"), td(r.speakers, "num"));
   });
   return h("article", {},
     h("a", { href: "#/", class: "back" }, "← Map"),
@@ -135,7 +136,7 @@ function districtView(d) {
     h("p", {}, "Languages in the test set: ", Object.entries(d.languages).map(([l, s]) => `${l} ${pct(s)}`).join(" · ")),
     h("h2", {}, "Results"),
     h("div", { class: "table-wrap" }, h("table", {},
-      h("thead", {}, h("tr", {}, ["Model", "WER", "95% interval", "CER", "Clips", "Speakers"].map((c) => h("th", { scope: "col" }, c)))),
+      h("thead", {}, h("tr", {}, ["Model", "WER", "95% interval", "Lenient WER", "CER", "Clips", "Speakers"].map((c) => h("th", { scope: "col" }, c)))),
       h("tbody", {}, rows))),
     h("h2", {}, "Example clips"),
     h("p", { class: "sub" }, "Struck-through words were missed or replaced. Underlined words were inserted, or replaced what was said."),
