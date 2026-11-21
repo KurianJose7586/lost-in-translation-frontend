@@ -4,6 +4,8 @@ const [data, svgText] = await Promise.all([
   fetch("map.svg").then((r) => r.text()),
 ]);
 const byId = new Map(data.districts.map((d) => [d.id, d]));
+// A district may cover several 2011 polygons (`map`); by default its id is the polygon id.
+const byPolygon = new Map(data.districts.flatMap((d) => (d.map ?? [d.id]).map((p) => [p, d])));
 let model = data.models[0];
 document.getElementById("fixture").hidden = !data.fixture;
 
@@ -51,7 +53,7 @@ function mapView() {
   function paint() {
     title.textContent = `${model}: word error rate by district`;
     for (const p of svg.querySelectorAll("path")) {
-      const d = byId.get(p.id);
+      const d = byPolygon.get(p.id);
       const r = d?.results[model];
       for (const a of ["class", "tabindex", "role", "aria-label"]) p.removeAttribute(a);
       if (!r) continue;
@@ -72,7 +74,7 @@ function mapView() {
   }
 
   function show(p, x, y) {
-    const d = byId.get(p.id);
+    const d = byPolygon.get(p.id);
     const r = d.results[model];
     tip.replaceChildren(
       h("strong", {}, r.status ? "Not supported" : `${pct(r.wer)} WER`),
@@ -85,7 +87,7 @@ function mapView() {
     tip.style.top = `${Math.max(8, y - box.top - tip.offsetHeight - 12)}px`;
   }
   const hide = () => (tip.hidden = true);
-  const open = (p) => (location.hash = `#/district/${p.id}`);
+  const open = (p) => (location.hash = `#/district/${byPolygon.get(p.id).id}`);
 
   svg.addEventListener("pointermove", (e) => {
     const p = e.target.closest("path[tabindex]");
