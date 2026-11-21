@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lost in Transcription</title>
+<meta name="description" content="A district-by-district map of where open speech recognition fails in India.">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#/">Lost in Transcription</a>
+  <nav><a href="#/">Map</a><a href="#/methodology">Methodology</a></nav>
+</header>
+<p id="fixture" class="banner" hidden>Sample data: every number on this site is made up until the first real evaluation lands.</p>
+<main id="view"></main>
+<footer>
+  District boundaries: <a href="https://github.com/datameet/maps">DataMeet</a>, Census 2011 districts (CC BY 2.5 India).
+  Speech: <a href="https://vaani.iisc.ac.in">Vaani</a> by IISc and ARTPARK (CC BY 4.0).
+</footer>
+
+<template id="methodology">
+<article class="prose">
+  <h1>Methodology</h1>
+  <p>This page is a draft. Sections marked <em>to do</em> are filled in when the test sets are frozen.</p>
+
+  <h2>Data</h2>
+  <p>Test clips come from the transcribed part of <a href="https://vaani.iisc.ac.in">Vaani</a>, which records where each speaker lives. Each district's test set holds 100–200 clips, and no speaker appears in two districts or in any training data. <em>To do: clip counts, the frozen manifest hash.</em></p>
+
+  <h2>Normalisation</h2>
+  <p>Before scoring, the reference and the model's output both go through the same text normaliser, so spelling variants don't count as errors:</p>
+  <ul>
+    <li>Unicode NFC; zero-width joiners removed.</li>
+    <li>The nukta is dropped (ज़ = ज), except in ड़ and ढ़.</li>
+    <li>Chandrabindu becomes anusvara (माँ = मां), and so does a nasal with virama before a consonant of its own class (हिन्दी = हिंदी).</li>
+    <li>Devanagari digits become ASCII digits; punctuation and symbols are removed; Latin script is lowercased.</li>
+  </ul>
+  <p>The full rules and their test cases are in the <a href="https://github.com/KurianJose7586/ost-in-translation-backend">backend repository</a>. <em>To do: numbers written as words, English written in Devanagari, Vaani's noise tags.</em></p>
+
+  <h2>Scoring</h2>
+  <p>A district's word error rate (WER) is all word errors (substitutions, deletions and insertions) divided by all reference words in that district. The 95% interval comes from a bootstrap that resamples speakers 1,000 times, because clips from one speaker aren't independent.</p>
+  <p>Map colours use a shrunk WER: each district is pulled toward its language's average, more strongly when its interval is wide, so a district with few clips can't swing the map. Tables show the raw WER.</p>
+
+  <h2>Models and languages</h2>
+  <p>Each model is told the clip's language. Where a model doesn't know a variety (Bhojpuri, for example), it is told the closest language it does know, usually Hindi, because that is what a real user would choose. Where a model supports no close language, the district is shown as <strong>not supported</strong>, never as a 100% error rate.</p>
+
+  <h2>Contamination</h2>
+  <p><em>To do: for each model, whether its training data may include Vaani or IndicVoices.</em></p>
+
+  <h2>Limitations</h2>
+  <p><em>To do.</em> The boundaries are Census 2011 districts; districts created since then are drawn inside their 2011 parent.</p>
+</article>
+</template>
+</body>
+</html>
