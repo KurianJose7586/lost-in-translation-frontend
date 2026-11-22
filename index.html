@@ -26,7 +26,8 @@
   <p>This page is a draft. Sections marked <em>to do</em> are filled in when the test sets are frozen.</p>
 
   <h2>Data</h2>
-  <p>Test clips come from the transcribed part of <a href="https://vaani.iisc.ac.in">Vaani</a>, which records where each speaker lives. The first round covers ten Hindi-speaking districts in seven states: 1,511 clips from 793 speakers, about 150 per district. Every clip is under 40 seconds, no speaker gives more than 8 clips, and no speaker appears in two districts. Speaker IDs are hashed before anything is published, because some of Vaani's contain parts of names. <em>To do: the frozen manifest hash, when the test sets are frozen.</em></p>
+  <p>Test clips come from the transcribed part of <a href="https://vaani.iisc.ac.in">Vaani</a>, which records where each speaker lives. The first round covers ten Hindi-speaking districts in seven states: 1,511 clips from 793 speakers, about 150 per district. Every clip is under 40 seconds, no speaker gives more than 8 clips, and no speaker appears in two districts. Speaker IDs are hashed before anything is published, because some of Vaani's contain parts of names. The first round's clip list is <code>data/manifests/m0.jsonl</code> in the backend repository (SHA-256 <code style="word-break: break-all">555232c27bb717e63e01b2b53e9e3b4977aabfeee063f7032dbfdfa15ae56ba5</code>).</p>
+  <p>Vaani also publishes an official train, validation and test split, in a separate release that we found after the first round was drawn. When the test sets are frozen, they will come from its test split. <em>To do: the frozen manifest hashes.</em></p>
 
   <h2>Normalisation</h2>
   <p>Before scoring, the reference and the model's output both go through the same text normaliser, so spelling variants don't count as errors:</p>
@@ -37,7 +38,7 @@
     <li>Devanagari digits become ASCII digits; punctuation and symbols are removed; Latin script is lowercased.</li>
     <li>Vaani's annotations are removed: noise and pause tags, non-speech events such as [breathing], and the spelling Vaani adds in braces after a dialect or English word. Words spoken inside a noise tag are kept.</li>
   </ul>
-  <p>The full rules and their test cases are in the <a href="https://github.com/KurianJose7586/ost-in-translation-backend">backend repository</a>. <em>To do: numbers written as words, and English words a model writes in Latin script where Vaani writes Devanagari.</em></p>
+  <p>The full rules and their test cases are in the <a href="https://github.com/KurianJose7586/ost-in-translation-backend">backend repository</a>. Two differences still count as errors: numbers a model writes in digits where Vaani writes words, and English words a model writes in Latin script where Vaani writes Devanagari. In the first round they made up under 3% of Whisper's errors and none of the other models'.</p>
 
   <h2>Scoring</h2>
   <p>A district's word error rate (WER) is all word errors (substitutions, deletions and insertions) divided by all reference words in that district. The 95% interval comes from a bootstrap that resamples speakers 1,000 times, because clips from one speaker aren't independent.</p>
@@ -49,7 +50,7 @@
   <p>Each model is told the clip's language. Where a model doesn't know a variety (Bhojpuri, for example), it is told the closest language it does know, usually Hindi, because that is what a real user would choose. Where a model supports no close language, the district is shown as <strong>not supported</strong>, never as a 100% error rate.</p>
 
   <h2>Contamination</h2>
-  <p>A model trained on Vaani clips would look better here than it really is. Omnilingual ASR's paper describes its training data and doesn't name Vaani. OpenAI hasn't published Whisper's training data, and IndicConformer's model card doesn't say what it was trained on, so for those two we can't rule it out yet. IndicConformer is the best model in every district so far, which makes it the first to check.</p>
+  <p>A model trained on Vaani clips would look better here than it really is. Omnilingual ASR's paper describes its training data and doesn't name Vaani. OpenAI hasn't published Whisper's training data. IndicConformer's model card says only that it covers India's 22 official languages; no source we found lists Vaani among its training data, but none rules it out, and one of the companies that transcribed Vaani also worked on AI4Bharat's own corpus. On Vaani's separate held-out benchmark, IndicConformer's published Hindi WER is 13.2%, close to its 13.3% here. That is weak evidence against a large effect, because the clips and the text normalisation differ. IndicConformer is the best model in every district so far, so before the test sets are frozen we'll compare every model on clips from Vaani's official training and test splits: a model that trained on Vaani would do better on the training split.</p>
 
   <h2>Limitations</h2>
   <p>This is a first round: ten districts, one language, about 150 clips each. The reference transcripts haven't been checked by ear yet, so part of a district's error rate may come from how its clips were transcribed rather than from how its speakers talk. A listening audit of 30 clips per district comes next. The boundaries are Census 2011 districts; districts created since then are drawn inside their 2011 parent.</p>
