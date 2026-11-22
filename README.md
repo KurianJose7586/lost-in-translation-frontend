@@ -13,7 +13,7 @@ python -m http.server 8000
 | `index.html` | Page shell and the methodology page |
 | `app.js` | Map, model switcher, tooltip, table, district pages |
 | `style.css` | Light and dark themes; the sequential colour ramp |
-| `data/baseline.json` | One evaluation round. **The current file is fake sample data** (`"fixture": true`); replace it with `atlas-eval` output |
+| `data/baseline.json` | One evaluation round, copied from `atlas-eval` output. Now round M0: ten Hindi districts, three models |
 | `map.svg` | District boundaries, projected and simplified (see below) |
 
 ## District boundaries

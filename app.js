@@ -7,7 +7,6 @@ const byId = new Map(data.districts.map((d) => [d.id, d]));
 // A district may cover several 2011 polygons (`map`); by default its id is the polygon id.
 const byPolygon = new Map(data.districts.flatMap((d) => (d.map ?? [d.id]).map((p) => [p, d])));
 let model = data.models[0];
-document.getElementById("fixture").hidden = !data.fixture;
 
 const HATCH = `<defs><pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
   <rect class="hatch-bg" width="4" height="4"/><line class="hatch-line" x1="0" y1="0" x2="0" y2="4"/></pattern></defs>`;
@@ -15,7 +14,7 @@ const HATCH = `<defs><pattern id="hatch" width="4" height="4" patternUnits="user
 const pct = (x) => `${Math.round(x * 100)}%`;
 const interval = (r) => `${pct(r.ci[0])}–${pct(r.ci[1])}`;
 const loose = (r) => (r.wer_lenient == null ? "–" : pct(r.wer_lenient));
-const bin = (r) => Math.min(6, Math.floor(r.wer_pooled * 10));
+const bin = (r) => Math.min(6, Math.floor(r.wer_pooled * 20)); // 5-point bins, 30% and up in one
 
 // Data strings always become text nodes, never HTML.
 function h(tag, attrs = {}, ...kids) {
@@ -105,7 +104,7 @@ function mapView() {
   paint();
 
   const legend = h("ul", { class: "legend", "aria-label": "Legend" },
-    [0, 1, 2, 3, 4, 5, 6].map((i) => h("li", {}, h("span", { class: `sw b${i}` }), i < 6 ? `${i * 10}–${i * 10 + 10}%` : "60% or more")),
+    [0, 1, 2, 3, 4, 5, 6].map((i) => h("li", {}, h("span", { class: `sw b${i}` }), i < 6 ? `${i * 5}–${i * 5 + 5}%` : "30% or more")),
     h("li", {}, h("span", { class: "sw unsupported" }), "Not supported"),
     h("li", {}, h("span", { class: "sw nodata" }), "No data"),
   );

@@ -13,7 +13,7 @@
   <a class="brand" href="#/">Lost in Transcription</a>
   <nav><a href="#/">Map</a><a href="#/methodology">Methodology</a></nav>
 </header>
-<p id="fixture" class="banner" hidden>Sample data: every number on this site is made up until the first real evaluation lands.</p>
+<p class="banner">First results: ten Hindi-speaking districts so far, and their reference transcripts are still being checked by ear. See the <a href="#/methodology">methodology</a>.</p>
 <main id="view"></main>
 <footer>
   District boundaries: <a href="https://github.com/datameet/maps">DataMeet</a>, Census 2011 districts (CC BY 2.5 India).
@@ -26,7 +26,7 @@
   <p>This page is a draft. Sections marked <em>to do</em> are filled in when the test sets are frozen.</p>
 
   <h2>Data</h2>
-  <p>Test clips come from the transcribed part of <a href="https://vaani.iisc.ac.in">Vaani</a>, which records where each speaker lives. Each district's test set holds 100–200 clips, and no speaker appears in two districts or in any training data. <em>To do: clip counts, the frozen manifest hash.</em></p>
+  <p>Test clips come from the transcribed part of <a href="https://vaani.iisc.ac.in">Vaani</a>, which records where each speaker lives. The first round covers ten Hindi-speaking districts in seven states: 1,511 clips from 793 speakers, about 150 per district. Every clip is under 40 seconds, no speaker gives more than 8 clips, and no speaker appears in two districts. Speaker IDs are hashed before anything is published, because some of Vaani's contain parts of names. <em>To do: the frozen manifest hash, when the test sets are frozen.</em></p>
 
   <h2>Normalisation</h2>
   <p>Before scoring, the reference and the model's output both go through the same text normaliser, so spelling variants don't count as errors:</p>
@@ -35,8 +35,9 @@
     <li>The nukta is dropped (ज़ = ज), except in ड़ and ढ़.</li>
     <li>Chandrabindu becomes anusvara (माँ = मां), and so does a nasal with virama before a consonant of its own class (हिन्दी = हिंदी).</li>
     <li>Devanagari digits become ASCII digits; punctuation and symbols are removed; Latin script is lowercased.</li>
+    <li>Vaani's annotations are removed: noise and pause tags, non-speech events such as [breathing], and the spelling Vaani adds in braces after a dialect or English word. Words spoken inside a noise tag are kept.</li>
   </ul>
-  <p>The full rules and their test cases are in the <a href="https://github.com/KurianJose7586/ost-in-translation-backend">backend repository</a>. <em>To do: numbers written as words, English written in Devanagari, Vaani's noise tags.</em></p>
+  <p>The full rules and their test cases are in the <a href="https://github.com/KurianJose7586/ost-in-translation-backend">backend repository</a>. <em>To do: numbers written as words, and English words a model writes in Latin script where Vaani writes Devanagari.</em></p>
 
   <h2>Scoring</h2>
   <p>A district's word error rate (WER) is all word errors (substitutions, deletions and insertions) divided by all reference words in that district. The 95% interval comes from a bootstrap that resamples speakers 1,000 times, because clips from one speaker aren't independent.</p>
@@ -44,13 +45,14 @@
   <p><strong>Lenient WER</strong> scores the same clips again, but forgives differences that are spelling rather than hearing: the nasal mark (है and हैं, में and मे) and a short list of variants of the same word, such as बहोत and बहुत, or the homophones कि and की. In our first ten districts, about a third of the strongest model's errors were of this kind. If a district is bad on both measures, the model really is mishearing its speakers. Lenient WER also stops a model trained on Vaani from looking better just because it learned Vaani's spellings.</p>
 
   <h2>Models and languages</h2>
+  <p>The first round compares three open models: Whisper-large-v3 (run with faster-whisper), Meta's Omnilingual ASR (omniASR_LLM_3B_v2) and AI4Bharat's IndicConformer (600M, multilingual).</p>
   <p>Each model is told the clip's language. Where a model doesn't know a variety (Bhojpuri, for example), it is told the closest language it does know, usually Hindi, because that is what a real user would choose. Where a model supports no close language, the district is shown as <strong>not supported</strong>, never as a 100% error rate.</p>
 
   <h2>Contamination</h2>
-  <p><em>To do: for each model, whether its training data may include Vaani or IndicVoices.</em></p>
+  <p>A model trained on Vaani clips would look better here than it really is. Omnilingual ASR's paper describes its training data and doesn't name Vaani. OpenAI hasn't published Whisper's training data, and IndicConformer's model card doesn't say what it was trained on, so for those two we can't rule it out yet. IndicConformer is the best model in every district so far, which makes it the first to check.</p>
 
   <h2>Limitations</h2>
-  <p><em>To do.</em> The boundaries are Census 2011 districts; districts created since then are drawn inside their 2011 parent.</p>
+  <p>This is a first round: ten districts, one language, about 150 clips each. The reference transcripts haven't been checked by ear yet, so part of a district's error rate may come from how its clips were transcribed rather than from how its speakers talk. A listening audit of 30 clips per district comes next. The boundaries are Census 2011 districts; districts created since then are drawn inside their 2011 parent.</p>
 </article>
 </template>
 </body>
