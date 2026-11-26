@@ -63,7 +63,8 @@ h2 { font-size: 1.125rem; margin: 32px 0 8px; }
 main { padding-block: 16px 48px; }
 footer { color: var(--muted); font-size: 0.875rem; padding-block: 24px; border-top: 1px solid var(--line); }
 
-.controls { margin-bottom: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+section > .banner { padding: 0; margin: 0 0 16px; }
 select { font: inherit; padding: 4px 8px; }
 
 .map { position: relative; background: var(--surface); border-radius: 8px; padding: 8px; }

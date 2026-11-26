@@ -11,14 +11,14 @@ python -m http.server 8000
 | File | What it is |
 |---|---|
 | `index.html` | Page shell and the methodology page |
-| `app.js` | Map, model switcher, tooltip, table, district pages |
+| `app.js` | Map, language and model switchers, tooltip, table, district pages. Model display names are in `NAMES` |
 | `style.css` | Light and dark themes; the sequential colour ramp |
-| `data/baseline.json` | One evaluation round, copied from `atlas-eval` output. Now round M0: ten Hindi districts, three models |
+| `data/baseline.json` | One evaluation round (format version 2, results per language and model), copied from `atlas-eval` output. Now round M0: ten Hindi districts, three models |
 | `map.svg` | District boundaries, projected and simplified (see below) |
 
 ## District boundaries
 
-`map.svg` is built from DataMeet's [Census 2011 district map](https://github.com/datameet/maps/tree/master/Districts/Census_2011) (CC BY 2.5 India, attribution required). Its outer boundary follows India's official boundary. Each path's `id` is `state-district`, lowercased with non-letters replaced by hyphens (for example `bihar-patna`), and the site joins on that, so `atlas-eval` must produce the same ids. Vaani spellings and districts created after 2011 need a name-mapping table, which comes once the Vaani district list is available.
+`map.svg` is built from DataMeet's [Census 2011 district map](https://github.com/datameet/maps/tree/master/Districts/Census_2011) (CC BY 2.5 India, attribution required). Its outer boundary follows India's official boundary. Each path's `id` is `state-district`, lowercased with non-letters replaced by hyphens (for example `bihar-patna`), and the site joins on that, so `atlas-eval` must produce the same ids. Vaani's spellings and districts created after 2011 are mapped to these polygons by `data/vaani_districts.tsv` in the backend, and each district in the round lists its polygons in `map`.
 
 To rebuild it:
 
